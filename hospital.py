@@ -3,7 +3,7 @@ class patient(object):
         self.patient_id = patient_id
         self.name = name
         self.allergies = allergies
-        self.bednum = 0
+        self.bednum = None
     
 class hospital(object):
     def __init__(self, name, capacity, patients):
@@ -23,6 +23,7 @@ class hospital(object):
     def discharge(self, patient):
         self.patients.remove(patient)
         self.beds.remove(patient)
+        patient.bednum = None
         for item in self.patients:
             item.bednum = self.beds.index(item) + 1
         print "{} has been discharged".format(patient.name)
